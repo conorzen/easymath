@@ -24,17 +24,17 @@ EasyMath lets you write mathematical expressions the way you think about them, w
 ### Installation
 
 ```bash
-pip install easymath
+pip install easymaths
 ```
 or for uv
 
 ```bash
-uv pip install easymath
+uv pip install easymaths
 ```
 ### Basic Usage
 
 ```python
-from easymath import EasyMath
+from easymaths import EasyMath
 
 calc = EasyMath()
 
@@ -55,7 +55,7 @@ print(f"Investment value: ${money:.2f}")
 ### Even Quicker
 
 ```python
-from easymath import calculate
+from easymaths import calculate
 
 # One-line calculations
 result = calculate("2x^2 + 3x - 1", x=4)  # Returns 43
@@ -112,7 +112,7 @@ growth = calc.calculate("cagr", FV=1500, PV=1000, n=5)
 ### Education
 ```python
 # Quadratic formula solver
-from easymath import solve_quadratic
+from easymaths import solve_quadratic
 x1, x2 = solve_quadratic(1, -5, 6)  # Solves x² - 5x + 6 = 0
 print(f"Solutions: x₁={x1}, x₂={x2}")  # Solutions: x₁=3.0, x₂=2.0
 
