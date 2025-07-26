@@ -556,7 +556,7 @@ SUPPORTED OPERATIONS:
   + - * /          Addition, subtraction, multiplication, division
   ^  **            Exponentiation (both ^ and ** work)
   ²  ³             Squared and cubed (or use ^2, ^3)
-  
+
 SUPPORTED FUNCTIONS (UPPERCASE):
   Trigonometric:   SIN, COS, TAN, ASIN, ACOS, ATAN
   Hyperbolic:      SINH, COSH, TANH
@@ -577,16 +577,16 @@ EXAMPLES:
   # Simple calculations
   calc.eval("2x + 3", x=5)              # Returns 13
   calc.eval("x^2 + 2x + 1", x=3)        # Returns 16
-  
+
   # Using functions and constants (UPPERCASE)
   calc.eval("SIN(PI/2)")                 # Returns 1.0
   calc.eval("SQRT(x^2 + y^2)", x=3, y=4) # Returns 5.0
   calc.eval("LOG10(1000)")               # Returns 3.0
-  
+
   # Define reusable functions
   calc.define("area_circle", "PI * r^2", "Area of a circle")
   calc.calculate("area_circle", r=5)     # Returns ~78.54
-  
+
   # Multiple variables
   calc.define("distance", "SQRT((x2-x1)^2 + (y2-y1)^2)")
   calc.calculate("distance", x1=0, y1=0, x2=3, y2=4)  # Returns 5.0

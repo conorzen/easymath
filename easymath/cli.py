@@ -143,7 +143,7 @@ Examples:
   easymath "2 + 3"                 # Evaluate expression
   easymath "2x + 1" x=5            # Expression with variables
   easymath --examples              # Show examples
-  
+
 Interactive mode commands:
   help                             # Show help
   functions                        # List defined functions
