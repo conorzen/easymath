@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "easymaths"
-version = "1.0.0"
+version = "1.0.1"
 description = "Natural mathematical expressions for non-programmers"
 readme = "README.md"
 license = {file = "LICENSE"}
@@ -74,12 +74,12 @@ full = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/conorzen/easymath"
-Documentation = "https://github.com/conorzen/easymath#readme"
-Repository = "https://github.com/conorzen/easymath.git"
-"Bug Tracker" = "https://github.com/conorzen/easymath/issues"
-Changelog = "https://github.com/conorzen/easymath/blob/main/CHANGELOG.md"
-"Source Code" = "https://github.com/conorzen/easymath"
+Homepage = "https://github.com/conorzen/easymaths"
+Documentation = "https://github.com/conorzen/easymaths#readme"
+Repository = "https://github.com/conorzen/easymaths.git"
+"Bug Tracker" = "https://github.com/conorzen/easymaths/issues"
+Changelog = "https://github.com/conorzen/easymaths/blob/main/CHANGELOG.md"
+"Source Code" = "https://github.com/conorzen/easymaths"
 
 [project.scripts]
 easymath = "easymath.cli:main"
