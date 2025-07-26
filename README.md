@@ -107,6 +107,13 @@ monthly = calc.calculate("payment", P=200000, r=0.04/12, n=30*12)
 # Investment growth
 calc.define("cagr", "((FV/PV)^(1/n)) - 1")
 growth = calc.calculate("cagr", FV=1500, PV=1000, n=5)
+
+# advance compound interest
+calc.define("compound", "p(1+r/n)^(nt)")
+
+for i in range(1,12):
+  amount = calc.calculate("compound", p=1000, r=0.05, n=12, t=i)
+  print(f"Investment vale: {amount:.2f} at year: {i}")
 ```
 
 ### Education
