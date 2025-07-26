@@ -41,6 +41,7 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
+    environment: pypi
 
     steps:
     - uses: actions/checkout@v4
@@ -69,5 +70,4 @@ jobs:
         TWINE_USERNAME: __token__
         TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
       run: |
-        twine upload dist/*
-      environment: pypi 
+        twine upload dist/* 
