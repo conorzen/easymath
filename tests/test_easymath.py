@@ -81,7 +81,7 @@ class TestMathematicalFunctions:
     
     def test_logarithmic_functions(self):
         """Test logarithmic functions."""
-        assert self.calc.eval("LN(E)") == 1
+        assert self.calc.eval("LN(EXP(1))") == 1
         assert self.calc.eval("LOG10(10)") == 1
         assert self.calc.eval("LOG10(100)") == 2
         assert self.calc.eval("LOG2(8)") == 3
@@ -128,8 +128,8 @@ class TestConstants:
     
     def test_e_constant(self):
         """Test Euler's number."""
-        assert abs(self.calc.eval("E") - math.e) < 1e-10
-        assert abs(self.calc.eval("2E") - 2 * math.e) < 1e-10
+        assert abs(self.calc.eval("EXP(1)") - math.e) < 1e-10
+        assert abs(self.calc.eval("2*EXP(1)") - 2 * math.e) < 1e-10
     
     def test_tau_constant(self):
         """Test tau constant."""

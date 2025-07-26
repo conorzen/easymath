@@ -412,6 +412,14 @@ class EasyMath:
             # Parse the expression
             parsed = self._parse_expression(expression)
             
+            # Check for obvious syntax errors in the parsed expression
+            if parsed.endswith(('+', '-', '*', '/', '^', '**')):
+                raise ExpressionError(f"Invalid expression: '{expression}' ends with an operator")
+            
+            # Check for unmatched parentheses
+            if parsed.count('(') != parsed.count(')'):
+                raise ExpressionError(f"Invalid expression: '{expression}' has unmatched parentheses")
+            
             # Extract required variables from the parsed expression
             required_vars = self._extract_variables(parsed)
             
@@ -446,6 +454,8 @@ class EasyMath:
             
         except VariableError:
             raise  # Re-raise variable errors as-is
+        except ExpressionError:
+            raise  # Re-raise expression errors as-is
         except SyntaxError as e:
             raise ExpressionError(f"Invalid expression syntax: {expression}")
         except ZeroDivisionError:
@@ -475,7 +485,9 @@ class EasyMath:
         if not name or not name.isidentifier():
             raise ValueError(f"Invalid function name: '{name}'. Must be a valid identifier.")
         
-        if name in self.math_functions or name in self.constants:
+        # Check for conflicts with built-in functions and constants (case-insensitive)
+        built_in_names = {name.upper() for name in self.math_functions.keys()} | set(self.constants.keys())
+        if name.upper() in built_in_names:
             raise ValueError(f"Cannot redefine built-in function or constant: '{name}'")
         
         try:
@@ -693,6 +705,18 @@ def is_valid_expression(expression: str) -> bool:
     Returns:
         True if expression can be parsed, False otherwise
     """
+    if not expression or not expression.strip():
+        return False
+    
+    # Check for obvious syntax errors
+    expr = expression.strip()
+    if expr.endswith(('+', '-', '*', '/', '^', '**')):
+        return False
+    
+    # Check for unmatched parentheses
+    if expr.count('(') != expr.count(')'):
+        return False
+    
     try:
         calc = EasyMath()
         calc._parse_expression(expression)
@@ -712,4 +736,5 @@ def get_expression_variables(expression: str) -> List[str]:
         List of variable names
     """
     calc = EasyMath()
-    return calc._extract_variables(expression)
+    parsed = calc._parse_expression(expression)
+    return calc._extract_variables(parsed)
