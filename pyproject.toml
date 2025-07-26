@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "realmaths"
-version = "1.0.1"
+version = "1.0.2"
 description = "Natural mathematical expressions for non-programmers"
 readme = "README.md"
 license = {file = "LICENSE"}

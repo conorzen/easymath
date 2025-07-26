@@ -30,7 +30,7 @@ Quick Usage:
 from .core import EasyMath, calculate, solve_quadratic
 from .exceptions import EasyMathError, ExpressionError, VariableError
 
-__version__ = "1.0.0"
+__version__ = "1.0.2"
 __author__ = "Your Name"
 __email__ = "your.email@example.com"
 __license__ = "MIT"
