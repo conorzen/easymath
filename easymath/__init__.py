@@ -13,17 +13,17 @@ Features:
 
 Basic Usage:
     from easymath import EasyMath
-    
+
     calc = EasyMath()
     result = calc.eval("4n + 1", n=5)  # Returns 21
-    
+
     # Define reusable functions
     calc.define("area_circle", "π * r^2")
     area = calc.calculate("area_circle", r=5)
 
 Quick Usage:
     from easymath import calculate
-    
+
     result = calculate("2x^2 + 3x - 1", x=4)  # Returns 43
 """
 
@@ -37,11 +37,11 @@ __license__ = "MIT"
 
 __all__ = [
     "EasyMath",
-    "calculate", 
+    "calculate",
     "solve_quadratic",
     "EasyMathError",
-    "ExpressionError", 
-    "VariableError"
+    "ExpressionError",
+    "VariableError",
 ]
 
 # Package metadata
@@ -49,9 +49,11 @@ __title__ = "EasyMath"
 __description__ = "Natural mathematical expressions for non-programmers"
 __url__ = "https://github.com/yourusername/easymath"
 
+
 def get_version():
     """Return the current version of EasyMath."""
     return __version__
+
 
 def quick_help():
     """Display quick help for EasyMath usage."""
@@ -77,8 +79,10 @@ For more help: calc.help()
 """
     print(help_text)
 
+
 # Optional: Auto-create a default calculator instance
 default_calc = EasyMath()
+
 
 def eval_expression(expression, **variables):
     """Quick evaluation using the default calculator instance."""

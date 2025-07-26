@@ -31,20 +31,22 @@ import os
 # This is useful when running tests without installing the package
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+
 # Test fixtures and utilities
 def assert_close(actual, expected, tolerance=1e-10):
     """
     Helper function to assert that two floating point numbers are close.
-    
+
     Args:
         actual: The calculated value
         expected: The expected value
         tolerance: Maximum difference allowed
-        
+
     Raises:
         AssertionError: If values are not within tolerance
     """
     assert abs(actual - expected) < tolerance, f"Expected {expected}, got {actual}"
+
 
 # Common test data
 SAMPLE_EXPRESSIONS = [
