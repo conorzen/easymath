@@ -1,0 +1,77 @@
+# EasyMath MANIFEST.in
+# Specifies additional files to include in the source distribution
+
+# Include important documentation files
+include README.md
+include LICENSE
+include CHANGELOG.md
+include CONTRIBUTING.md
+
+# Include configuration files
+include pyproject.toml
+include setup.cfg
+include requirements.txt
+include requirements-dev.txt
+
+# Include type information
+include easymath/py.typed
+
+# Include test files (for source distribution)
+recursive-include tests *.py
+
+# Include example files if they exist
+recursive-include examples *.py *.md *.txt
+recursive-include docs *.py *.md *.rst *.txt *.yml *.yaml
+
+# Exclude development and build artifacts
+global-exclude *.pyc
+global-exclude *.pyo
+global-exclude *.pyd
+global-exclude __pycache__
+global-exclude *.so
+global-exclude .DS_Store
+global-exclude *.orig
+global-exclude *.rej
+
+# Exclude version control and development files
+exclude .gitignore
+exclude .pre-commit-config.yaml
+exclude .github
+recursive-exclude .github *
+exclude .vscode
+recursive-exclude .vscode *
+exclude .idea
+recursive-exclude .idea *
+
+# Exclude build and distribution artifacts
+exclude build
+recursive-exclude build *
+exclude dist
+recursive-exclude dist *
+exclude *.egg-info
+recursive-exclude *.egg-info *
+
+# Exclude testing and coverage artifacts
+exclude .coverage
+exclude .coverage.*
+exclude coverage.xml
+exclude htmlcov
+recursive-exclude htmlcov *
+exclude .pytest_cache
+recursive-exclude .pytest_cache *
+exclude .tox
+recursive-exclude .tox *
+exclude .mypy_cache
+recursive-exclude .mypy_cache *
+
+# Exclude temporary and backup files
+exclude *.tmp
+exclude *.temp
+exclude *.bak
+exclude *.backup
+exclude *~
+
+# Include any additional package data
+# (Add specific patterns here if you have data files to include)
+# include easymath/data/*.json
+# include easymath/templates/*.txt

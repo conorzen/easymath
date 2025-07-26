@@ -1,0 +1,59 @@
+# EasyMath - Development Dependencies
+#
+# These packages are needed for development, testing, and maintenance
+# of the EasyMath package. Not required for end users.
+
+# Testing Framework
+pytest>=7.0.0              # Modern testing framework
+pytest-cov>=4.0.0          # Coverage reporting for pytest
+pytest-xdist>=3.0.0        # Parallel test execution
+
+# Code Quality
+black>=22.0.0               # Code formatting
+flake8>=5.0.0              # Linting (PEP 8 compliance)
+flake8-docstrings>=1.6.0   # Docstring linting
+mypy>=1.0.0                # Static type checking
+isort>=5.10.0              # Import sorting
+
+# Documentation
+sphinx>=5.0.0              # Documentation generation
+sphinx-rtd-theme>=1.0.0    # ReadTheDocs theme for Sphinx
+myst-parser>=0.18.0        # Markdown support for Sphinx
+
+# Development Tools
+pre-commit>=2.20.0         # Git hooks for code quality
+tox>=4.0.0                 # Testing across Python versions
+wheel>=0.37.0              # For building wheels
+twine>=4.0.0               # For uploading to PyPI
+
+# Performance Profiling (optional)
+memory-profiler>=0.60.0    # Memory usage profiling
+line-profiler>=4.0.0       # Line-by-line timing
+
+# Jupyter (for interactive development and examples)
+jupyter>=1.0.0             # Jupyter notebook
+ipython>=8.0.0             # Enhanced Python shell
+matplotlib>=3.5.0          # Plotting (for future visualization features)
+
+# Build Tools
+build>=0.8.0               # Modern Python build tool
+setuptools>=65.0.0         # Package building
+setuptools-scm>=7.0.0      # Version management from git tags
+
+# Type Checking Stubs (if needed)
+types-setuptools>=65.0.0   # Type stubs for setuptools
+
+# Development Convenience
+rich>=12.0.0               # Beautiful terminal output
+click>=8.0.0               # CLI development (if expanding CLI features)
+
+# Testing Data and Fixtures
+faker>=15.0.0              # Generate test data
+hypothesis>=6.0.0          # Property-based testing
+
+# Security
+bandit>=1.7.0              # Security linting
+safety>=2.0.0              # Check for known security vulnerabilities
+
+# Local Development
+python-dotenv>=0.20.0      # Environment variable management

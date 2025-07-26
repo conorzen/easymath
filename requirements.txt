@@ -1,0 +1,24 @@
+# EasyMath - Production Dependencies
+#
+# EasyMath is designed to have zero external dependencies to ensure
+# maximum compatibility and minimal installation footprint.
+# 
+# All functionality is built using Python's standard library only.
+#
+# This approach ensures:
+# - Fast installation
+# - No dependency conflicts
+# - Works in restricted environments
+# - Minimal security surface area
+# - Long-term stability
+
+# No production dependencies required!
+# EasyMath uses only Python standard library modules:
+# - math (mathematical functions)
+# - re (regular expressions for parsing)
+# - typing (type hints)
+
+# Note: Python 3.7+ is required for modern features like:
+# - Type hints
+# - f-strings
+# - Dataclasses (if used in future versions)
