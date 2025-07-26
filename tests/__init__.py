@@ -5,16 +5,16 @@ This package contains all unit tests, integration tests, and test utilities
 for the EasyMath mathematical expression package.
 
 Test Structure:
-- test_easymath.py: Main test suite for core functionality
+- test_realmaths.py: Main test suite for core functionality
 - test_examples.py: Tests for example calculations (future)
 - test_cli.py: Tests for command-line interface (future)
 - test_performance.py: Performance benchmarks (future)
 
 Running Tests:
     pytest tests/                    # Run all tests
-    pytest tests/test_easymath.py    # Run specific test file
+    pytest tests/test_realmaths.py    # Run specific test file
     pytest -v                       # Verbose output
-    pytest --cov=easymath           # With coverage report
+    pytest --cov=realmaths           # With coverage report
 
 Test Categories:
 - Unit tests: Test individual functions in isolation
@@ -27,7 +27,7 @@ Test Categories:
 import sys
 import os
 
-# Add the parent directory to Python path to allow importing easymath
+# Add the parent directory to Python path to allow importing realmaths
 # This is useful when running tests without installing the package
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 

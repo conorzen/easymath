@@ -6,7 +6,7 @@ for various mathematical calculations across different domains like
 physics, finance, geometry, and education.
 """
 
-from .core import EasyMath, calculate, solve_quadratic
+from realmaths.core import EasyMath, calculate, solve_quadratic
 
 
 def basic_examples():

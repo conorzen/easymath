@@ -1,5 +1,5 @@
 """
-EasyMath - Natural Mathematical Expressions for Python
+realmaths package
 
 A user-friendly package that allows natural mathematical notation
 for people with no coding experience.

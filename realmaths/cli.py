@@ -135,7 +135,7 @@ def evaluate_expression(expression, variables=None):
 def main():
     """Main entry point for the CLI."""
     parser = argparse.ArgumentParser(
-        description="EasyMath - Natural mathematical expressions for everyone",
+        description="RealMaths - Natural mathematical expressions for everyone",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:

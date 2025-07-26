@@ -3,7 +3,7 @@ requires = ["setuptools>=65.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "easymaths"
+name = "realmaths"
 version = "1.0.1"
 description = "Natural mathematical expressions for non-programmers"
 readme = "README.md"
@@ -74,12 +74,12 @@ full = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/conorzen/easymaths"
-Documentation = "https://github.com/conorzen/easymaths#readme"
-Repository = "https://github.com/conorzen/easymaths.git"
-"Bug Tracker" = "https://github.com/conorzen/easymaths/issues"
-Changelog = "https://github.com/conorzen/easymaths/blob/main/CHANGELOG.md"
-"Source Code" = "https://github.com/conorzen/easymaths"
+Homepage = "https://github.com/conorzen/realmaths"
+Documentation = "https://github.com/conorzen/realmaths#readme"
+Repository = "https://github.com/conorzen/realmaths.git"
+"Bug Tracker" = "https://github.com/conorzen/realmaths/issues"
+Changelog = "https://github.com/conorzen/realmaths/blob/main/CHANGELOG.md"
+"Source Code" = "https://github.com/conorzen/realmaths"
 
 [project.scripts]
 easymath = "easymath.cli:main"

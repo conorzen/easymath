@@ -4,7 +4,7 @@ EasyMath Demo Script
 Testing the new capitalization convention and fixed functionality
 """
 
-from easymaths import EasyMath, calculate, solve_quadratic
+from realmaths import EasyMath, calculate, solve_quadratic
 
 def main():
     print("🧮 EasyMath Demo - New Capitalization Convention")

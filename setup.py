@@ -4,18 +4,18 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setup(
-    name="easymaths",
+    name="realmaths",
     version="1.0.0",
     author="Conor Reid",
     author_email="conoreid@me.com",
     description="Natural mathematical expressions for non-programmers",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/conorzen/easymath",
+    url="https://github.com/conorzen/easymaths",
     project_urls={
-        "Bug Tracker": "https://github.com/conorzen/easymath/issues",
-        "Documentation": "https://github.com/conorzen/easymath#readme",
-        "Source Code": "https://github.com/conorzen/easymath",
+        "Bug Tracker": "https://github.com/conorzen/easymaths/issues",
+        "Documentation": "https://github.com/conorzen/easymaths#readme",
+        "Source Code": "https://github.com/conorzen/easymaths",
     },
     packages=find_packages(),
     classifiers=[

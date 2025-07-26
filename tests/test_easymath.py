@@ -7,8 +7,8 @@ including expression parsing, evaluation, function definition, and error handlin
 
 import pytest
 import math
-from easymath import EasyMath, calculate, solve_quadratic
-from easymath.exceptions import (
+from realmaths import EasyMath, calculate, solve_quadratic
+from realmaths.exceptions import (
     EasyMathError,
     ExpressionError,
     VariableError,
@@ -343,7 +343,7 @@ class TestUtilityFunctions:
 
     def test_is_valid_expression(self):
         """Test expression validation function."""
-        from easymath.core import is_valid_expression
+        from realmaths.core import is_valid_expression
 
         assert is_valid_expression("2x + 1") is True
         assert is_valid_expression("SIN(PI/2)") is True
@@ -352,7 +352,7 @@ class TestUtilityFunctions:
 
     def test_get_expression_variables(self):
         """Test variable extraction function."""
-        from easymath.core import get_expression_variables
+        from realmaths.core import get_expression_variables
 
         vars1 = get_expression_variables("2x + 3y")
         assert set(vars1) == set(["x", "y"])

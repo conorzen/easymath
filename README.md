@@ -1,8 +1,8 @@
-# EasyMath 🧮
+# RealMaths 🧮
 
 **Natural mathematical expressions for everyone!**
 
-EasyMath lets you write mathematical expressions the way you think about them, without needing to know programming syntax. Perfect for students, teachers, researchers, and anyone who wants to do math without learning to code.
+RealMaths lets you write mathematical expressions the way you think about them, without needing to know programming syntax. Perfect for students, teachers, researchers, and anyone who wants to do math without learning to code.
 
 [![Python Version](https://img.shields.io/badge/python-3.7+-blue.svg)](https://python.org)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
@@ -24,17 +24,17 @@ EasyMath lets you write mathematical expressions the way you think about them, w
 ### Installation
 
 ```bash
-pip install easymaths
+pip install realmaths
 ```
 or for uv
 
 ```bash
-uv pip install easymaths
+uv pip install realmaths
 ```
 ### Basic Usage
 
 ```python
-from easymaths import EasyMath
+from realmaths import EasyMath
 
 calc = EasyMath()
 
@@ -55,7 +55,7 @@ print(f"Investment value: ${money:.2f}")
 ### Even Quicker
 
 ```python
-from easymaths import calculate
+from realmaths import calculate
 
 # One-line calculations
 result = calculate("2x^2 + 3x - 1", x=4)  # Returns 43
@@ -112,7 +112,7 @@ growth = calc.calculate("cagr", FV=1500, PV=1000, n=5)
 ### Education
 ```python
 # Quadratic formula solver
-from easymaths import solve_quadratic
+from realmaths import solve_quadratic
 x1, x2 = solve_quadratic(1, -5, 6)  # Solves x² - 5x + 6 = 0
 print(f"Solutions: x₁={x1}, x₂={x2}")  # Solutions: x₁=3.0, x₂=2.0
 
@@ -138,7 +138,7 @@ calc.eval("COS(PI/3)")              # cos(60°) = 0.5
 
 ### Capitalization Convention
 
-EasyMath uses a clear capitalization system to distinguish between functions/constants and variables:
+RealMaths uses a clear capitalization system to distinguish between functions/constants and variables:
 
 - **UPPERCASE**: Functions and constants (`SIN`, `COS`, `PI`, `E`, `SQRT`)
 - **lowercase**: Variables (`x`, `y`, `a`, `b`, `c`)
@@ -202,14 +202,14 @@ calc.help()           # Show comprehensive help
 calc.list_functions() # Show your defined functions
 
 # Quick help
-from easymath import quick_help
+from realmath import quick_help
 quick_help()
 ```
 
 ## 🔧 Advanced Features
 
 ### Error Handling
-EasyMath provides helpful error messages:
+RealMaths provides helpful error messages:
 
 ```python
 # Missing variable
@@ -223,7 +223,7 @@ calc.eval("1/0")         # MathematicalError: Division by zero
 ```
 
 ### Safe Mode
-By default, EasyMath runs in safe mode to prevent code injection:
+By default, RealMaths runs in safe mode to prevent code injection:
 
 ```python
 calc = EasyMath(safe_mode=True)   # Default: safe evaluation
@@ -232,7 +232,7 @@ calc = EasyMath(safe_mode=False)  # Allow more Python features
 
 ### Validation
 ```python
-from easymath import is_valid_expression, get_expression_variables
+from realmath import is_valid_expression, get_expression_variables
 
 # Check if expression is valid
 if is_valid_expression("2x + 3"):
@@ -305,7 +305,7 @@ python -m easymath.examples
 
 ## 🤝 Contributing
 
-We welcome contributions! EasyMath is designed to make math accessible to everyone.
+We welcome contributions! RealMaths is designed to make math accessible to everyone.
 
 1. Fork the repository
 2. Create a feature branch
@@ -340,4 +340,4 @@ MIT License - feel free to use in your projects, educational materials, and rese
 
 **Made with ❤️ for the math community**
 
-*EasyMath: Because mathematics should be about the math, not the syntax.*
+*RealMaths: Because mathematics should be about the math, not the syntax.*
