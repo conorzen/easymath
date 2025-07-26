@@ -30,13 +30,13 @@ jobs:
     - name: Run tests
       run: |
         python -c "import sys; print('Python version:', sys.version)"
-        python -c "import easymath; print('Package imported successfully')"
+        python -c "import realmaths; print('Package imported successfully')"
         pytest tests/ -v --tb=short
 
     - name: Run linting
       run: |
-        flake8 easymath/ tests/
-        black --check easymath/ tests/
+        flake8 realmaths/ tests/
+        black --check realmaths/ tests/
 
   build:
     needs: test

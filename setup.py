@@ -11,11 +11,11 @@ setup(
     description="Natural mathematical expressions for non-programmers",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/conorzen/easymaths",
-    project_urls={
-        "Bug Tracker": "https://github.com/conorzen/easymaths/issues",
-        "Documentation": "https://github.com/conorzen/easymaths#readme",
-        "Source Code": "https://github.com/conorzen/easymaths",
+    url="https://github.com/conorzen/realmaths",
+project_urls={
+    "Bug Tracker": "https://github.com/conorzen/realmaths/issues",
+    "Documentation": "https://github.com/conorzen/realmaths#readme",
+    "Source Code": "https://github.com/conorzen/realmaths",
     },
     packages=find_packages(),
     classifiers=[
@@ -61,7 +61,7 @@ setup(
     ],
     entry_points={
         "console_scripts": [
-            "easymath=easymath.cli:main", 
+            "realmaths=realmaths.cli:main", 
         ],
     },
 )

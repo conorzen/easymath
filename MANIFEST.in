@@ -1,4 +1,4 @@
-# EasyMath MANIFEST.in
+# RealMaths MANIFEST.in
 # Specifies additional files to include in the source distribution
 
 # Include important documentation files
@@ -14,7 +14,7 @@ include requirements.txt
 include requirements-dev.txt
 
 # Include type information
-include easymath/py.typed
+include realmaths/py.typed
 
 # Include test files (for source distribution)
 recursive-include tests *.py

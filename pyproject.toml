@@ -68,7 +68,7 @@ test = [
     "hypothesis>=6.0.0",
 ]
 full = [
-    "easymath[dev,docs,test]",
+    "realmaths[dev,docs,test]",
     "jupyter>=1.0.0",
     "matplotlib>=3.5.0",
 ]
@@ -82,13 +82,13 @@ Changelog = "https://github.com/conorzen/realmaths/blob/main/CHANGELOG.md"
 "Source Code" = "https://github.com/conorzen/realmaths"
 
 [project.scripts]
-easymath = "easymath.cli:main"
+realmaths = "realmaths.cli:main"
 
 [tool.setuptools]
-packages = ["easymath"]
+packages = ["realmaths"]
 
 [tool.setuptools.package-data]
-easymath = ["py.typed"]
+realmaths = ["py.typed"]
 
 # Black configuration
 [tool.black]
@@ -114,7 +114,7 @@ extend-exclude = '''
 profile = "black"
 multi_line_output = 3
 line_length = 88
-known_first_party = ["easymath"]
+known_first_party = ["realmaths"]
 known_third_party = ["pytest"]
 
 # pytest configuration
@@ -124,7 +124,7 @@ addopts = [
     "-ra",
     "--strict-markers",
     "--strict-config",
-    "--cov=easymath",
+    "--cov=realmaths",
     "--cov-report=term-missing",
     "--cov-report=html",
     "--cov-report=xml",
@@ -146,7 +146,7 @@ filterwarnings = [
 
 # Coverage configuration
 [tool.coverage.run]
-source = ["easymath"]
+source = ["realmaths"]
 omit = [
     "*/tests/*",
     "*/test_*",
@@ -239,7 +239,7 @@ ignore = [
 "tests/**/*" = ["B011"]
 
 [tool.ruff.isort]
-known-first-party = ["easymath"]
+known-first-party = ["realmaths"]
 
 # Commitizen configuration for conventional commits
 [tool.commitizen]
