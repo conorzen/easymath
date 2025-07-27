@@ -7,7 +7,11 @@ for parsing and evaluating natural mathematical expressions.
 
 import re
 import math
-from typing import Dict, List, Union, Any, Optional, Tuple
+from typing import Dict, List, Union, Any, Optional, Tuple, TYPE_CHECKING
+
+if TYPE_CHECKING:
+    import pandas
+
 from .exceptions import EasyMathError, ExpressionError, VariableError
 
 
@@ -427,6 +431,130 @@ class EasyMath:
         except Exception as e:
             raise EasyMathError(f"Error evaluating '{expression}': {e}")
 
+    def eval_vector(self, expression: str, **variables) -> Union[List[float], "pandas.Series"]:
+        """
+        Evaluate a mathematical expression on vectorized data (lists, pandas Series, etc.).
+
+        Args:
+            expression: Natural math expression like "LOG(x)" or "x^2 + 2x + 1"
+            **variables: Variable values as keyword arguments. Can be:
+                - Lists: [1, 2, 3, 4]
+                - Pandas Series: pd.Series([1, 2, 3, 4])
+                - Numpy arrays: np.array([1, 2, 3, 4])
+                - Single values: 5 (will be broadcast to match other variables)
+
+        Returns:
+            List of results if inputs are lists, or pandas Series if inputs are Series
+
+        Raises:
+            ExpressionError: If the expression cannot be parsed or evaluated
+            VariableError: If required variables are missing or have mismatched lengths
+
+        Examples:
+            # With lists
+            calc.eval_vector("LOG(x)", x=[1, 10, 100])  # Returns [0.0, 2.302585, 4.60517]
+            
+            # With pandas Series
+            import pandas as pd
+            df = pd.DataFrame({'days': [1, 2, 3, 4, 5]})
+            result = calc.eval_vector("LOG(x)", x=df['days'])
+            
+            # Mixed types (Series + scalar)
+            result = calc.eval_vector("x + 1", x=df['days'])  # Adds 1 to each value
+        """
+        if not expression or not expression.strip():
+            raise ExpressionError("Expression cannot be empty")
+
+        try:
+            # Parse the expression once
+            parsed = self._parse_expression(expression)
+            
+            # Extract required variables from the parsed expression
+            required_vars = self._extract_variables(parsed)
+
+            # Check for missing variables
+            missing_vars = set(required_vars) - set(variables.keys())
+            if missing_vars:
+                raise VariableError(
+                    f"Missing variables: {', '.join(sorted(missing_vars))}. "
+                    f"Required variables: {', '.join(sorted(required_vars))}"
+                )
+
+            # Determine the length and type of the result
+            result_length = None
+            result_type = list  # Default to list
+            pandas_series = None
+
+            # Check if any variable is a pandas Series
+            for var_name, var_value in variables.items():
+                if hasattr(var_value, 'pandas') and hasattr(var_value, 'values'):
+                    # This is likely a pandas Series
+                    if result_length is None:
+                        result_length = len(var_value)
+                        result_type = type(var_value)
+                        pandas_series = var_value
+                    elif len(var_value) != result_length:
+                        raise VariableError(
+                            f"Variable '{var_name}' has length {len(var_value)}, "
+                            f"but expected {result_length}"
+                        )
+                elif isinstance(var_value, (list, tuple)):
+                    # This is a list/tuple
+                    if result_length is None:
+                        result_length = len(var_value)
+                    elif len(var_value) != result_length:
+                        raise VariableError(
+                            f"Variable '{var_name}' has length {len(var_value)}, "
+                            f"but expected {result_length}"
+                        )
+
+            # If no vector variables found, fall back to scalar evaluation
+            if result_length is None:
+                return self.eval(expression, **variables)
+
+            # Prepare the result container
+            if result_type != list and hasattr(pandas_series, 'index'):
+                # Return pandas Series with same index
+                result = pandas_series.copy()
+                result[:] = 0.0  # Initialize with zeros
+            else:
+                # Return list
+                result = [0.0] * result_length
+
+            # Evaluate the expression for each element
+            for i in range(result_length):
+                # Create scalar variables for this iteration
+                scalar_vars = {}
+                for var_name, var_value in variables.items():
+                    if hasattr(var_value, 'pandas') and hasattr(var_value, 'values'):
+                        # Extract value from pandas Series
+                        scalar_vars[var_name] = var_value.iloc[i]
+                    elif isinstance(var_value, (list, tuple)):
+                        # Extract value from list/tuple
+                        scalar_vars[var_name] = var_value[i]
+                    else:
+                        # Scalar value - use as-is
+                        scalar_vars[var_name] = var_value
+
+                # Evaluate for this element
+                element_result = self.eval(expression, **scalar_vars)
+                
+                # Store the result
+                if isinstance(result, list):
+                    result[i] = element_result
+                else:
+                    # pandas Series
+                    result.iloc[i] = element_result
+
+            return result
+
+        except VariableError:
+            raise  # Re-raise variable errors as-is
+        except ExpressionError:
+            raise  # Re-raise expression errors as-is
+        except Exception as e:
+            raise EasyMathError(f"Error in vector evaluation: {e}")
+
     def define(self, name: str, expression: str, description: str = "") -> None:
         """
         Define a reusable mathematical function.
@@ -610,19 +738,47 @@ def calculate(expression: str, **variables) -> Union[float, int]:
     """
     Quick calculation without creating an EasyMath instance.
 
+    This is a convenience function that creates a temporary EasyMath
+    instance and evaluates the expression.
+
     Args:
-        expression: Mathematical expression
+        expression: Natural math expression
         **variables: Variable values
 
     Returns:
-        Calculation result
+        Numerical result
 
     Examples:
-        calculate("4n + 1", n=5)  # Returns 21
-        calculate("x^2 + 1", x=3)  # Returns 10
+        calculate("2x + 1", x=3)  # Returns 7
+        calculate("sin(π/2)")  # Returns 1.0
     """
     calc = EasyMath()
     return calc.eval(expression, **variables)
+
+
+def calculate_vector(expression: str, **variables) -> Union[List[float], "pandas.Series"]:
+    """
+    Quick vectorized calculation without creating an EasyMath instance.
+
+    This is a convenience function that creates a temporary EasyMath
+    instance and evaluates the expression on vectorized data.
+
+    Args:
+        expression: Natural math expression
+        **variables: Variable values (can be lists, pandas Series, etc.)
+
+    Returns:
+        List of results or pandas Series
+
+    Examples:
+        calculate_vector("LOG(x)", x=[1, 10, 100])  # Returns [0.0, 2.302585, 4.60517]
+        
+        import pandas as pd
+        df = pd.DataFrame({'days': [1, 2, 3, 4, 5]})
+        result = calculate_vector("LOG(x)", x=df['days'])
+    """
+    calc = EasyMath()
+    return calc.eval_vector(expression, **variables)
 
 
 def solve_quadratic(

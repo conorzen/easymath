@@ -27,7 +27,7 @@ Quick Usage:
     result = calculate("2x^2 + 3x - 1", x=4)  # Returns 43
 """
 
-from .core import EasyMath, calculate, solve_quadratic
+from .core import EasyMath, calculate, calculate_vector, solve_quadratic
 from .exceptions import EasyMathError, ExpressionError, VariableError
 
 __version__ = "1.0.2"
@@ -38,6 +38,7 @@ __license__ = "MIT"
 __all__ = [
     "EasyMath",
     "calculate",
+    "calculate_vector",
     "solve_quadratic",
     "EasyMathError",
     "ExpressionError",

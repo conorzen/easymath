@@ -409,6 +409,78 @@ class TestRealWorldExamples:
         assert area == 6  # Area of 3-4-5 triangle is 6
 
 
+class TestVectorizedOperations:
+    """Test vectorized evaluation functionality."""
+
+    def setup_method(self):
+        """Set up test fixtures."""
+        self.calc = EasyMath()
+
+    def test_vectorized_list_operations(self):
+        """Test vectorized operations on lists."""
+        from realmaths import calculate_vector
+
+        # Test simple vectorized operation (LOG is log base 10)
+        result = calculate_vector("LOG(x)", x=[1, 10, 100])
+        expected = [0.0, 1.0, 2.0]  # log10(1)=0, log10(10)=1, log10(100)=2
+        for r, e in zip(result, expected):
+            assert abs(r - e) < 1e-10
+
+        # Test multiple variables
+        result = calculate_vector("x + y", x=[1, 2, 3], y=[10, 20, 30])
+        assert result == [11, 22, 33]
+
+        # Test with scalar constant
+        result = calculate_vector("x + 5", x=[1, 2, 3])
+        assert result == [6, 7, 8]
+
+    def test_vectorized_pandas_operations(self):
+        """Test vectorized operations with pandas Series."""
+        try:
+            import pandas as pd
+            from realmaths import calculate_vector
+
+            # Create test data
+            data = pd.Series([1, 2, 3, 4, 5])
+            
+            # Test vectorized operation
+            result = calculate_vector("x^2", x=data)
+            assert isinstance(result, pd.Series)
+            assert list(result) == [1, 4, 9, 16, 25]
+            
+            # Test with multiple Series
+            data2 = pd.Series([10, 20, 30, 40, 50])
+            result = calculate_vector("x + y", x=data, y=data2)
+            assert list(result) == [11, 22, 33, 44, 55]
+
+        except ImportError:
+            # Skip if pandas is not available
+            pass
+
+    def test_vectorized_error_handling(self):
+        """Test error handling in vectorized operations."""
+        from realmaths import calculate_vector
+
+        # Test mismatched lengths
+        with pytest.raises(VariableError):
+            calculate_vector("x + y", x=[1, 2, 3], y=[10, 20])
+
+        # Test invalid expression
+        with pytest.raises(EasyMathError):
+            calculate_vector("LOG(-1)", x=[1, 2, 3])
+
+    def test_vectorized_fallback_to_scalar(self):
+        """Test that vectorized operations fall back to scalar when appropriate."""
+        from realmaths import calculate_vector
+
+        # Should work like regular eval for scalar inputs
+        result = calculate_vector("x + 1", x=5)
+        assert result == 6
+
+        result = calculate_vector("SIN(PI/2)")
+        assert abs(result - 1) < 1e-10
+
+
 if __name__ == "__main__":
     # Run tests with pytest
     pytest.main([__file__])
