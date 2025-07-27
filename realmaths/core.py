@@ -431,7 +431,9 @@ class EasyMath:
         except Exception as e:
             raise EasyMathError(f"Error evaluating '{expression}': {e}")
 
-    def eval_vector(self, expression: str, **variables) -> Union[List[float], "pandas.Series"]:
+    def eval_vector(
+        self, expression: str, **variables
+    ) -> Union[List[float], "pandas.Series"]:
         """
         Evaluate a mathematical expression on vectorized data (lists, pandas Series, etc.).
 
@@ -453,12 +455,12 @@ class EasyMath:
         Examples:
             # With lists
             calc.eval_vector("LOG(x)", x=[1, 10, 100])  # Returns [0.0, 2.302585, 4.60517]
-            
+
             # With pandas Series
             import pandas as pd
             df = pd.DataFrame({'days': [1, 2, 3, 4, 5]})
             result = calc.eval_vector("LOG(x)", x=df['days'])
-            
+
             # Mixed types (Series + scalar)
             result = calc.eval_vector("x + 1", x=df['days'])  # Adds 1 to each value
         """
@@ -468,7 +470,7 @@ class EasyMath:
         try:
             # Parse the expression once
             parsed = self._parse_expression(expression)
-            
+
             # Extract required variables from the parsed expression
             required_vars = self._extract_variables(parsed)
 
@@ -487,7 +489,7 @@ class EasyMath:
 
             # Check if any variable is a pandas Series
             for var_name, var_value in variables.items():
-                if hasattr(var_value, 'pandas') and hasattr(var_value, 'values'):
+                if hasattr(var_value, "pandas") and hasattr(var_value, "values"):
                     # This is likely a pandas Series
                     if result_length is None:
                         result_length = len(var_value)
@@ -513,7 +515,7 @@ class EasyMath:
                 return self.eval(expression, **variables)
 
             # Prepare the result container
-            if result_type != list and hasattr(pandas_series, 'index'):
+            if result_type != list and hasattr(pandas_series, "index"):
                 # Return pandas Series with same index
                 result = pandas_series.copy()
                 result[:] = 0.0  # Initialize with zeros
@@ -526,7 +528,7 @@ class EasyMath:
                 # Create scalar variables for this iteration
                 scalar_vars = {}
                 for var_name, var_value in variables.items():
-                    if hasattr(var_value, 'pandas') and hasattr(var_value, 'values'):
+                    if hasattr(var_value, "pandas") and hasattr(var_value, "values"):
                         # Extract value from pandas Series
                         scalar_vars[var_name] = var_value.iloc[i]
                     elif isinstance(var_value, (list, tuple)):
@@ -538,7 +540,7 @@ class EasyMath:
 
                 # Evaluate for this element
                 element_result = self.eval(expression, **scalar_vars)
-                
+
                 # Store the result
                 if isinstance(result, list):
                     result[i] = element_result
@@ -756,7 +758,9 @@ def calculate(expression: str, **variables) -> Union[float, int]:
     return calc.eval(expression, **variables)
 
 
-def calculate_vector(expression: str, **variables) -> Union[List[float], "pandas.Series"]:
+def calculate_vector(
+    expression: str, **variables
+) -> Union[List[float], "pandas.Series"]:
     """
     Quick vectorized calculation without creating an EasyMath instance.
 
@@ -772,7 +776,7 @@ def calculate_vector(expression: str, **variables) -> Union[List[float], "pandas
 
     Examples:
         calculate_vector("LOG(x)", x=[1, 10, 100])  # Returns [0.0, 2.302585, 4.60517]
-        
+
         import pandas as pd
         df = pd.DataFrame({'days': [1, 2, 3, 4, 5]})
         result = calculate_vector("LOG(x)", x=df['days'])

@@ -442,12 +442,12 @@ class TestVectorizedOperations:
 
             # Create test data
             data = pd.Series([1, 2, 3, 4, 5])
-            
+
             # Test vectorized operation
             result = calculate_vector("x^2", x=data)
             assert isinstance(result, pd.Series)
             assert list(result) == [1, 4, 9, 16, 25]
-            
+
             # Test with multiple Series
             data2 = pd.Series([10, 20, 30, 40, 50])
             result = calculate_vector("x + y", x=data, y=data2)
