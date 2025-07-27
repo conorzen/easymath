@@ -30,9 +30,9 @@ Quick Usage:
 from .core import EasyMath, calculate, calculate_vector, solve_quadratic
 from .exceptions import EasyMathError, ExpressionError, VariableError
 
-__version__ = "1.0.2"
-__author__ = "Your Name"
-__email__ = "your.email@example.com"
+__version__ = "1.0.3"
+__author__ = "Conor Reid"
+__email__ = "conoreid@me.com"
 __license__ = "MIT"
 
 __all__ = [
